@@ -22,6 +22,12 @@ public class UserPersistenceAdapter implements IUserPersistencePort {
     }
 
     @Override
+    public User findById(Long id) {
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        return userMapper.toUser(userEntity);
+    }
+
+    @Override
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

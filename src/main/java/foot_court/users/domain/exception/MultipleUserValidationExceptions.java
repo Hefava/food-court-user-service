@@ -6,7 +6,7 @@ public class MultipleUserValidationExceptions extends RuntimeException {
     private final List<String> errors;
 
     public MultipleUserValidationExceptions(List<String> errors) {
-        super("Se han producido múltiples errores de validación de usuario");
+        super("Multiple validation errors occurred");
         this.errors = errors;
     }
 

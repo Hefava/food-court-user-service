@@ -37,4 +37,9 @@ public class RegisterController {
         registerServicePort.registerOwner(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping("/validate-role-owner")
+    public ResponseEntity<Boolean> validateRoleOwner(@RequestParam Long userID) {
+        return ResponseEntity.ok(registerServicePort.validateRoleOwner(userID));
+    }
 }

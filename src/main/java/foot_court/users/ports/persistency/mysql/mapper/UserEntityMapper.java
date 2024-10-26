@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {RoleEntityMapper.class})
 public interface UserEntityMapper {
 
-    @Mapping(target = "role", source = "role.roleID")
+    @Mapping(target = "role", source = "role")
     User toUser(UserEntity userEntity);
 
     @Mapping(target = "role", source = "role")

@@ -1,7 +1,10 @@
 package foot_court.users.infrastructure.configuration;
 
+import foot_court.users.domain.api.IAthenticatorServicePort;
 import foot_court.users.domain.api.IRegisterServicePort;
+import foot_court.users.domain.api.usecase.AuthenticatorUseCase;
 import foot_court.users.domain.api.usecase.RegisterUseCase;
+import foot_court.users.domain.spi.IAuthenticationPersistencePort;
 import foot_court.users.domain.spi.IEncryptPasswordPort;
 import foot_court.users.domain.spi.IUserPersistencePort;
 import foot_court.users.ports.persistency.mysql.adapter.UserPersistenceAdapter;
@@ -34,6 +37,12 @@ public class BeanConfiguration {
             IEncryptPasswordPort encryptPasswordPort,
             IUserPersistencePort userPersistencePort) {
         return new RegisterUseCase(encryptPasswordPort, userPersistencePort);
+    }
+
+    @Bean
+    public IAthenticatorServicePort authenticatorServicePort(
+            IAuthenticationPersistencePort authenticationPort) {
+        return new AuthenticatorUseCase(authenticationPort);
     }
 
     @Bean

@@ -31,6 +31,13 @@ public class RegisterUseCase implements IRegisterServicePort {
         userPersistencePort.saveUser(user);
     }
 
+    @Override
+    public Boolean validateRoleOwner(Long id) {
+        User user = userPersistencePort.findById(id);
+        Long roleId = user.getRole();
+        return roleId.equals(UserUtils.ROLE_OWNER_ID);
+    }
+
     private void validateInfo(User user) {
         List<String> errors = new ArrayList<>();
         if (userPersistencePort.existsByEmail(user.getEmail())) {

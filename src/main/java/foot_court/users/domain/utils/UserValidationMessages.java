@@ -6,7 +6,6 @@ public class UserValidationMessages {
     throw new AssertionError("Cannot instantiate this class");
   }
 
-  public static final String ERRORS = "errors";
   public static final String INVALID_EMAIL_FORMAT = "Mail does not have a valid format";
   public static final String INVALID_ID_DOCUMENT = "Identity document must be numeric";
   public static final String CELLULAR_LENGTH_EXCEEDED = "Phone number must not exceed 13 characters";
