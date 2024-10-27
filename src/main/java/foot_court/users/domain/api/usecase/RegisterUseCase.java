@@ -25,17 +25,22 @@ public class RegisterUseCase implements IRegisterServicePort {
 
     @Override
     public void registerOwner(User user) {
-        validateInfo(user);
-        encryptPassword(user);
+        registerUser(user);
         setRoleOwner(user);
         userPersistencePort.saveUser(user);
     }
 
     @Override
     public void registerEmployed(User user) {
-        validateInfo(user);
-        encryptPassword(user);
+        registerUser(user);
         setRoleEmployed(user);
+        userPersistencePort.saveUser(user);
+    }
+
+    @Override
+    public void registerCustomer(User user) {
+        registerUser(user);
+        setRoleCustomer(user);
         userPersistencePort.saveUser(user);
     }
 
@@ -44,6 +49,11 @@ public class RegisterUseCase implements IRegisterServicePort {
         User user = userPersistencePort.findById(id);
         Long roleId = user.getRole();
         return roleId.equals(UserUtils.ROLE_OWNER_ID);
+    }
+
+    private void registerUser(User user) {
+        validateInfo(user);
+        encryptPassword(user);
     }
 
     private void validateInfo(User user) {
@@ -79,5 +89,9 @@ public class RegisterUseCase implements IRegisterServicePort {
 
     private void setRoleEmployed(User user) {
         user.setRole(UserUtils.ROLE_EMPLOYED_ID);
+    }
+
+    private void setRoleCustomer(User user) {
+        user.setRole(UserUtils.ROLE_CUSTOMER_ID);
     }
 }

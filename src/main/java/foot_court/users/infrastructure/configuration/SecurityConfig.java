@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/sign-up/register-owner").hasRole(ROLE_ADMINISTRATOR)
                         .requestMatchers("/sign-up/register-employed").hasRole(ROLE_OWNER)
                         .requestMatchers("/sign-up/validate-role-owner").permitAll()
+                        .requestMatchers("/sign-up/register-customer").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/validate-token/**").permitAll()
                         .anyRequest().authenticated()

@@ -46,6 +46,14 @@ public class RegisterController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping("/register-customer")
+    public ResponseEntity<Void> registerCustomer(
+            @RequestBody @Parameter(required = true) RegisterUserRequest request) {
+        User user = registerUserRequestMapper.toDomain(request);
+        registerServicePort.registerCustomer(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @GetMapping("/validate-role-owner")
     public ResponseEntity<Boolean> validateRoleOwner(@RequestParam Long userID) {
         return ResponseEntity.ok(registerServicePort.validateRoleOwner(userID));

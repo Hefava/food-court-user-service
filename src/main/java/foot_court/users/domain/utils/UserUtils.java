@@ -12,6 +12,8 @@ public class UserUtils {
 
     public static final Long ROLE_EMPLOYED_ID = 3L;
 
+    public static final Long ROLE_CUSTOMER_ID = 4L;
+
     public static final int MAX_PHONE_NUMBER_LENGTH = 13;
 
     public static final String ROLE_ADMINISTRATOR = "ADMINISTRATOR";
