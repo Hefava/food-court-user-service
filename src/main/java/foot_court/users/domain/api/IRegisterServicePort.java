@@ -4,5 +4,6 @@ import foot_court.users.domain.model.User;
 
 public interface IRegisterServicePort {
     void registerOwner(User user);
+    void registerEmployed(User user);
     Boolean validateRoleOwner(Long id);
 }

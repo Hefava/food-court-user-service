@@ -38,6 +38,14 @@ public class RegisterController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping("/register-employed")
+    public ResponseEntity<Void> registerEmployed(
+            @RequestBody @Parameter(required = true) RegisterUserRequest request) {
+        User user = registerUserRequestMapper.toDomain(request);
+        registerServicePort.registerEmployed(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @GetMapping("/validate-role-owner")
     public ResponseEntity<Boolean> validateRoleOwner(@RequestParam Long userID) {
         return ResponseEntity.ok(registerServicePort.validateRoleOwner(userID));

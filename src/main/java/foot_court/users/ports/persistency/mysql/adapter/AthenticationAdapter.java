@@ -15,6 +15,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import static foot_court.users.domain.utils.UserUtils.INVALID_CREDENTIALS;
+import static foot_court.users.domain.utils.UserUtils.USER_NOT_FOUND;
+
 @Component
 @RequiredArgsConstructor
 public class AthenticationAdapter implements IAuthenticationPersistencePort {
@@ -27,7 +30,7 @@ public class AthenticationAdapter implements IAuthenticationPersistencePort {
     @Override
     public User authenticate(String email, String password) {
         UserEntity userEntity = userRepository.findByEmail(email)
-                .orElseThrow(() -> new InvalidCredentialsException("Usuario o contraseña incorrectos"));
+                .orElseThrow(() -> new InvalidCredentialsException(INVALID_CREDENTIALS));
 
         try {
             authenticationManager.authenticate(
@@ -36,7 +39,7 @@ public class AthenticationAdapter implements IAuthenticationPersistencePort {
             return userEntityMapper.toUser(userEntity);
 
         } catch (BadCredentialsException e) {
-            throw new InvalidCredentialsException("Usuario o contraseña incorrectos", e);
+            throw new InvalidCredentialsException(INVALID_CREDENTIALS, e);
         }
     }
 
@@ -50,7 +53,7 @@ public class AthenticationAdapter implements IAuthenticationPersistencePort {
         String username = jwtService.extractUserId(token);
         Long userIdLong = Long.valueOf(username);
         UserEntity userEntity = userRepository.findById(userIdLong)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
         String role = userEntity.getRole().getName().name();
         Boolean valid = jwtService.isTokenValid(token, userEntity);
         return new Validation(username, role, valid);
