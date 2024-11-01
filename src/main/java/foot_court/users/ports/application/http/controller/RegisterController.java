@@ -2,7 +2,9 @@ package foot_court.users.ports.application.http.controller;
 
 import foot_court.users.domain.api.IRegisterServicePort;
 import foot_court.users.domain.model.User;
+import foot_court.users.ports.application.http.dto.RegisterUserEmployeeRequest;
 import foot_court.users.ports.application.http.dto.RegisterUserRequest;
+import foot_court.users.ports.application.http.mapper.RegisterUserEmployeeRequestMapper;
 import foot_court.users.ports.application.http.mapper.RegisterUserRequestMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,6 +25,7 @@ public class RegisterController {
 
     private final IRegisterServicePort registerServicePort;
     private final RegisterUserRequestMapper registerUserRequestMapper;
+    private final RegisterUserEmployeeRequestMapper registerUserEmployeeRequestMapper;
 
     @Operation(summary = "Register new owner", description = "Register a new owner in the system")
     @ApiResponses(value = {
@@ -40,9 +43,9 @@ public class RegisterController {
 
     @PostMapping("/register-employed")
     public ResponseEntity<Void> registerEmployed(
-            @RequestBody @Parameter(required = true) RegisterUserRequest request) {
-        User user = registerUserRequestMapper.toDomain(request);
-        registerServicePort.registerEmployed(user);
+            @RequestBody @Parameter(required = true) RegisterUserEmployeeRequest request) {
+        User user = registerUserEmployeeRequestMapper.toDomain(request);
+        registerServicePort.registerEmployed(request.getRestaurantId(), user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

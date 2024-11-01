@@ -7,8 +7,6 @@ import foot_court.users.domain.api.usecase.RegisterUseCase;
 import foot_court.users.domain.spi.IAuthenticationPersistencePort;
 import foot_court.users.domain.spi.IEncryptPasswordPort;
 import foot_court.users.domain.spi.IUserPersistencePort;
-import foot_court.users.ports.persistency.mysql.adapter.UserPersistenceAdapter;
-import foot_court.users.ports.persistency.mysql.mapper.UserEntityMapper;
 import foot_court.users.ports.persistency.mysql.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -43,12 +41,6 @@ public class BeanConfiguration {
     public IAthenticatorServicePort authenticatorServicePort(
             IAuthenticationPersistencePort authenticationPort) {
         return new AuthenticatorUseCase(authenticationPort);
-    }
-
-    @Bean
-    public IUserPersistencePort userPersistencePort(
-            UserRepository userRepository, UserEntityMapper userMapper) {
-        return new UserPersistenceAdapter(userRepository, userMapper);
     }
 
     @Bean

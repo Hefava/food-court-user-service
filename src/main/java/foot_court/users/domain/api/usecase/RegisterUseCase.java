@@ -31,10 +31,11 @@ public class RegisterUseCase implements IRegisterServicePort {
     }
 
     @Override
-    public void registerEmployed(User user) {
+    public void registerEmployed(Long restaurantId, User user) {
+        Long ownerId = userPersistencePort.getUserId();
         registerUser(user);
         setRoleEmployed(user);
-        userPersistencePort.saveUser(user);
+        userPersistencePort.saveUserEmployee(ownerId, restaurantId, user);
     }
 
     @Override
