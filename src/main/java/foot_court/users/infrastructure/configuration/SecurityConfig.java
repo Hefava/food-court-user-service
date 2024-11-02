@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/sign-up/register-customer").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/validate-token/**").permitAll()
+                        .requestMatchers("/sign-up/get-phone-number").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception

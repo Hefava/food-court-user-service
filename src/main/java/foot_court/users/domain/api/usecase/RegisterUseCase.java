@@ -52,6 +52,12 @@ public class RegisterUseCase implements IRegisterServicePort {
         return roleId.equals(UserUtils.ROLE_OWNER_ID);
     }
 
+    @Override
+    public String getPhoneNumber(Long userId) {
+        User user = userPersistencePort.findById(userId);
+        return user.getPhone();
+    }
+
     private void registerUser(User user) {
         validateInfo(user);
         encryptPassword(user);

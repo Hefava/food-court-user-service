@@ -61,4 +61,9 @@ public class RegisterController {
     public ResponseEntity<Boolean> validateRoleOwner(@RequestParam Long userID) {
         return ResponseEntity.ok(registerServicePort.validateRoleOwner(userID));
     }
+
+    @GetMapping("/get-phone-number")
+    public ResponseEntity<String> getPhoneNumber(@RequestParam Long userID) {
+        return ResponseEntity.ok(registerServicePort.getPhoneNumber(userID));
+    }
 }

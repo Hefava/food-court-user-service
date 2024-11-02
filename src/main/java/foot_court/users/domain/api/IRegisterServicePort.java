@@ -7,4 +7,5 @@ public interface IRegisterServicePort {
     void registerEmployed(Long restaurantId, User user);
     void registerCustomer(User user);
     Boolean validateRoleOwner(Long id);
+    String getPhoneNumber(Long id);
 }
