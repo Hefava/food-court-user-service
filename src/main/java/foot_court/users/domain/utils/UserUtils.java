@@ -20,6 +20,10 @@ public class UserUtils {
 
     public static final String ROLE_OWNER = "OWNER";
 
+    public static final String ROLE_EMPLOYEE = "EMPLOYEE";
+
+    public static final String ROLE_CUSTOMER = "CLIENT";
+
     public static final String INVALID_CREDENTIALS = "User or password incorrect";
 
     public static final String USER_NOT_FOUND = "User not found";

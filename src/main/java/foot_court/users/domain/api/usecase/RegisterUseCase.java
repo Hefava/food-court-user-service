@@ -58,6 +58,12 @@ public class RegisterUseCase implements IRegisterServicePort {
         return user.getPhone();
     }
 
+    @Override
+    public String getEmail(Long userId) {
+        User user = userPersistencePort.findById(userId);
+        return user.getEmail();
+    }
+
     private void registerUser(User user) {
         validateInfo(user);
         encryptPassword(user);

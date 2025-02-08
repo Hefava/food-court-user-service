@@ -14,8 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static foot_court.users.domain.utils.UserUtils.ROLE_ADMINISTRATOR;
-import static foot_court.users.domain.utils.UserUtils.ROLE_OWNER;
+import static foot_court.users.domain.utils.UserUtils.*;
 
 @Configuration
 @EnableWebSecurity
@@ -40,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/validate-token/**").permitAll()
                         .requestMatchers("/sign-up/get-phone-number").permitAll()
+                        .requestMatchers("/sign-up/get-email").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception

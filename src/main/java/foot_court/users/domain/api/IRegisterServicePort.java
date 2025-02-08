@@ -8,4 +8,5 @@ public interface IRegisterServicePort {
     void registerCustomer(User user);
     Boolean validateRoleOwner(Long id);
     String getPhoneNumber(Long id);
+    String getEmail(Long id);
 }

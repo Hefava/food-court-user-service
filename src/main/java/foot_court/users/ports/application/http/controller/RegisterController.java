@@ -66,4 +66,10 @@ public class RegisterController {
     public ResponseEntity<String> getPhoneNumber(@RequestParam Long userID) {
         return ResponseEntity.ok(registerServicePort.getPhoneNumber(userID));
     }
+
+    @GetMapping("/get-email")
+    public ResponseEntity<String> getEmail(
+            @RequestParam Long userID) {
+        return ResponseEntity.ok(registerServicePort.getEmail(userID));
+    }
 }
