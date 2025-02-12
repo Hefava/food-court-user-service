@@ -15,8 +15,12 @@ public class AuthenticatorUseCase implements IAthenticatorServicePort {
     @Override
     public String login(String email, String password) {
         User user = authenticationPort.authenticate(email, password);
+        if (user == null) {
+            return null;
+        }
         return authenticationPort.generateToken(user);
     }
+
 
     @Override
     public Validation validateToken(String token) {
